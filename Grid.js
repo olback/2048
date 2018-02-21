@@ -164,8 +164,8 @@ class Grid {
 
     static copyGrid(grid) {
         let extra = Grid.newArr(grid.length);
-        for (let i = 0; i < this.length; i++) {
-            for (let j = 0; j < this.length; j++) {
+        for (let i = 0; i < grid.length; i++) {
+            for (let j = 0; j < grid.length; j++) {
                 extra[i][j] = grid[i][j];
             }
         }

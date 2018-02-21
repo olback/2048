@@ -19,10 +19,13 @@ function setup() {
 	// Grid size
 	gridSizeP = createP('Grid size: 4x4');
 	gridSizeSlider = createSlider(3, 12, 4, 1);
+	gridSizeSlider.attribute('list', 'sizes');
 
 	// Win at score
 	winAtP = createP('<br/>Win at score: 2048');
 	winAtSlider = createSlider(4, 15, 11, 1);
+	winAtSlider.attribute('list', 'scores');
+
 	// Display info text
 	createP('<br/><br/>Click &lt;space&gt; to restart and apply changes.');
 
