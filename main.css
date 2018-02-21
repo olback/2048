@@ -1,0 +1,73 @@
+html {
+    background-color: #e8e8e8;
+    font-family: 'Courier New', Courier, monospace !important;
+}
+
+body {
+    margin: auto;
+    padding: 0;
+    overflow: hidden;
+    width: max-content;
+    margin: auto;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    text-align: center;
+}
+
+h1 {
+    margin-top: 0;
+    text-align: left;
+}
+
+canvas {
+    display: block;
+}
+
+p,
+input {
+    display: inline;
+    margin: 1em;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+div#modal {
+    display: none;
+    position: fixed;
+    max-width: 800px;
+    width: 100%;
+    margin: auto;
+    top: 20%;
+    background-color: #fff;
+    box-shadow: 0px 0px 100px 100px rgba(0,0,0,0.16);
+}
+
+div#modal > h1 {
+    padding: 2em;
+    text-align: center;
+}
+
+div#modal > button {
+    margin: 0 1em;
+    margin-bottom: 3em;
+    padding: 1em;
+    background-color: transparent;
+    border: 1px solid #333;
+    outline: none;
+}
+
+div#modal > button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+div#modal > button:active {
+    background-color: rgba(0, 0, 0, 0.2);
+}

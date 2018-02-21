@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>2048</title>
+
+		<link rel="stylesheet" href="main.css" />
+		<script src="libraries/p5.min.js"></script>
+		<script src="libraries/p5.dom.min.js"></script>
+		<script src="Grid.js"></script>
+		<script src="sketch.js"></script>
+	</head>
+	<body>
+		<h1 id="score">Score: </h1>
+		<div id="modal">
+			<h1 id="game-ended-text"></h1>
+			<button onclick="select('#modal').hide();">Close</button><button onclick="grid.restart(gridSizeSlider.value()); select('#modal').hide();">New game</button>
+		</div>
+	</body>
+</html>
