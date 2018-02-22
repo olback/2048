@@ -111,6 +111,7 @@ function keyPressed(arg) {
 	}
 
 	if (played) {
+
 		let past = Grid.copyGrid(grid.grid);
 		for (let i = 0; i < grid.length; i++) {
 			grid.grid[i] = grid.operate(grid.grid[i]);
@@ -146,37 +147,31 @@ function keyPressed(arg) {
 }
 
 // Handle touch gestures
-// TODO: Make this an object
-let touchstartX = 0;
-let touchstartY = 0;
-let touchendX = 0;
-let touchendY = 0;
-let touchMinD = 50;
+let t = { sX: 0, sY: 0, eX: 0, eY: 0, dist: 50 }
 
-// TODO: Move to setup()?
 function initTouch() {
 
 	const gestureZone = document.getElementsByTagName('canvas')[0];
 
 	gestureZone.addEventListener('touchstart', function (event) {
-		touchstartX = event.changedTouches[0].screenX;
-		touchstartY = event.changedTouches[0].screenY;
+		t.sX = event.changedTouches[0].screenX;
+		t.sY = event.changedTouches[0].screenY;
 	}, false);
 
 	gestureZone.addEventListener('touchend', function (event) {
-		touchendX = event.changedTouches[0].screenX;
-		touchendY = event.changedTouches[0].screenY;
+		t.eX = event.changedTouches[0].screenX;
+		t.eY = event.changedTouches[0].screenY;
 		handleGesture();
 	}, false);
 
 	function handleGesture() {
-		if (touchstartX - touchendX > touchMinD) {
+		if (t.sX - t.eX > t.dist) {
 			keyPressed(LEFT_ARROW);
-		} else if (touchendX - touchstartX > touchMinD) {
+		} else if (t.eX - t.sX > t.dist) {
 			keyPressed(RIGHT_ARROW);
-		} else if (touchstartY - touchendY > touchMinD) {
+		} else if (t.sY - t.eY > t.dist) {
 			keyPressed(UP_ARROW);
-		} else if (touchendY - touchstartY > touchMinD) {
+		} else if (t.eY - t.sY > t.dist) {
 			keyPressed(DOWN_ARROW);
 		}
 	}

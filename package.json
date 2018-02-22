@@ -1,0 +1,29 @@
+{
+  "name": "2048",
+  "version": "0.0.1",
+  "description": "My version of the game 2048!",
+  "main": "",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olback/2048.git"
+  },
+  "keywords": [
+    "2048",
+    "game",
+    "javascript",
+    "js-game",
+    "tests"
+  ],
+  "author": "olback",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/olback/2048/issues"
+  },
+  "homepage": "https://github.com/olback/2048#readme",
+  "devDependencies": {
+    "jest": "^22.1.4"
+  }
+}
