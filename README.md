@@ -1,5 +1,7 @@
 # 2048
 
+Build [![CircleCI](https://circleci.com/gh/olback/2048/tree/master.svg?style=svg)](https://circleci.com/gh/olback/2048/tree/master)  
+
 * Use arrow keys to move tiles
 * Swipe to move tiles if you're on a touch device
 * Variable size an target tile-size
