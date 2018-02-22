@@ -4,7 +4,6 @@ html {
 }
 
 body {
-    margin: auto;
     padding: 0;
     overflow: hidden;
     width: max-content;
@@ -24,6 +23,7 @@ h1 {
 
 canvas {
     display: block;
+    margin: auto;
 }
 
 p,
@@ -47,15 +47,15 @@ div#modal {
     margin: auto;
     top: 20%;
     background-color: #fff;
-    box-shadow: 0px 0px 100px 100px rgba(0,0,0,0.16);
+    box-shadow: 0px 0px 100px 100px rgba(0, 0, 0, 0.16);
 }
 
-div#modal > h1 {
+div#modal>h1 {
     padding: 2em;
     text-align: center;
 }
 
-div#modal > button {
+div#modal>button {
     margin: 0 1em;
     margin-bottom: 3em;
     padding: 1em;
@@ -64,10 +64,10 @@ div#modal > button {
     outline: none;
 }
 
-div#modal > button:hover {
+div#modal>button:hover {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-div#modal > button:active {
+div#modal>button:active {
     background-color: rgba(0, 0, 0, 0.2);
 }

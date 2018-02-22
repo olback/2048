@@ -1,4 +1,12 @@
 
+/**
+ *	github.com/olback/2048
+ *	twitter.com/mrolback
+ *
+ * TODO: The TODOs...
+ * 		 Comments
+ */
+
 let grid;
 let score = 0;
 let scoreLabel;
@@ -22,12 +30,15 @@ function setup() {
 	gridSizeSlider.attribute('list', 'sizes');
 
 	// Win at score
-	winAtP = createP('<br/>Win at score: 2048');
+	winAtP = createP('<br/>Win at tile-size: 2048');
 	winAtSlider = createSlider(4, 15, 11, 1);
 	winAtSlider.attribute('list', 'scores');
 
 	// Display info text
 	createP('<br/><br/>Click &lt;space&gt; to restart and apply changes.');
+
+	// Enable touch
+	initTouch();
 
 	// Create the grid with slider value
 	grid = new Grid(gridSizeSlider.value()); // Default size: 4
@@ -47,15 +58,20 @@ function draw() {
 
 	grid.winAt = pow(2, winAtSlider.value());
 	gridSizeP.html('Grid size: ' + gridSizeSlider.value() + 'x' + gridSizeSlider.value());
-	winAtP.html('<br/>Win at score: ' + grid.winAt);
+	winAtP.html('<br/>Win at tile-size: ' + grid.winAt);
 	scoreLabel.html('Score: ' + grid.score);
 
 	grid.draw();
 
 }
 
-function keyPressed() {
+function keyPressed(arg) {
 
+	if (typeof (arg) == 'number') {
+		keyCode = arg;
+	}
+
+	// TODO: Shold be stored in the grid object as they are specific to that grid.
 	let flipped = false;
 	let rotated = false;
 	let played = true;
@@ -73,7 +89,6 @@ function keyPressed() {
 			break;
 
 		case DOWN_ARROW:
-			// Move down
 			// Do nothing
 			break;
 
@@ -125,7 +140,45 @@ function keyPressed() {
 	if (grid.success()) {
 		console.log('You made it to ' + grid.winAt + '!');
 		select('#modal').show();
-		select('#game-ended-text').html('Congratulations!<br/> You scored ' + grid.score + ' points and made it to ' + grid.winAt +'!');
+		select('#game-ended-text').html('Congratulations!<br/> You scored ' + grid.score + ' points and made it to ' + grid.winAt + '!');
+	}
+
+}
+
+// Handle touch gestures
+// TODO: Make this an object
+let touchstartX = 0;
+let touchstartY = 0;
+let touchendX = 0;
+let touchendY = 0;
+let touchMinD = 50;
+
+// TODO: Move to setup()?
+function initTouch() {
+
+	const gestureZone = document.getElementsByTagName('canvas')[0];
+
+	gestureZone.addEventListener('touchstart', function (event) {
+		touchstartX = event.changedTouches[0].screenX;
+		touchstartY = event.changedTouches[0].screenY;
+	}, false);
+
+	gestureZone.addEventListener('touchend', function (event) {
+		touchendX = event.changedTouches[0].screenX;
+		touchendY = event.changedTouches[0].screenY;
+		handleGesture();
+	}, false);
+
+	function handleGesture() {
+		if (touchstartX - touchendX > touchMinD) {
+			keyPressed(LEFT_ARROW);
+		} else if (touchendX - touchstartX > touchMinD) {
+			keyPressed(RIGHT_ARROW);
+		} else if (touchstartY - touchendY > touchMinD) {
+			keyPressed(UP_ARROW);
+		} else if (touchendY - touchstartY > touchMinD) {
+			keyPressed(DOWN_ARROW);
+		}
 	}
 
 }

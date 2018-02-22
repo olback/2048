@@ -3,7 +3,7 @@ class Grid {
 
     constructor(size) {
 
-        if(!size) size = 4;
+        if (!size) size = 4;
 
         let arr = new Array(size);
         for (let i = 0; i < arr.length; i++) {
@@ -131,7 +131,7 @@ class Grid {
         this.length = this.grid.length;
         this.score = 0;
         this.addNum();
-		this.addNum();
+        this.addNum();
     }
 
     looper(callback) {
