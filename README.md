@@ -3,6 +3,9 @@
 * Use arrow keys to move tiles
 * Swipe to move tiles if you're on a touch device
 * Variable size an target tile-size
+* Tests with CircleCI!
+* Made in a object-oriented way (ish)
+* Does not work in Internet Explorer
 
 Insired by [@shiffman](https://youtu.be/ze_o4YvZ6-s?t=1h34m9s)  
 Original game by [@gabrielecirulli](https://gabrielecirulli.github.io/2048/)  

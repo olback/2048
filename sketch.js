@@ -1,10 +1,6 @@
-
 /**
  *	github.com/olback/2048
  *	twitter.com/mrolback
- *
- * TODO: The TODOs...
- * 		 Comments
  */
 
 let grid;
@@ -67,7 +63,7 @@ function draw() {
 
 function keyPressed(arg) {
 
-	if (typeof (arg) == 'number') {
+	if (typeof arg == 'number') {
 		keyCode = arg;
 	}
 
@@ -147,7 +143,13 @@ function keyPressed(arg) {
 }
 
 // Handle touch gestures
-let t = { sX: 0, sY: 0, eX: 0, eY: 0, dist: 50 }
+let t = {
+	sX: 0,
+	sY: 0,
+	eX: 0,
+	eY: 0,
+	dist: 50
+}
 
 function initTouch() {
 
