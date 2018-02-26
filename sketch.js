@@ -75,12 +75,12 @@ function keyPressed(arg) {
 	switch (keyCode) {
 
 		case UP_ARROW:
-			grid.grid = grid.flipGrid();
+			grid.flipGrid();
 			flipped = true;
 			break;
 
 		case RIGHT_ARROW:
-			grid.grid = grid.rotateGrid();
+			grid.rotateGrid();
 			rotated = true;
 			break;
 
@@ -89,8 +89,8 @@ function keyPressed(arg) {
 			break;
 
 		case LEFT_ARROW:
-			grid.grid = grid.rotateGrid();
-			grid.grid = grid.flipGrid();
+			grid.rotateGrid();
+			grid.flipGrid();
 			rotated = true;
 			flipped = true;
 			break;
@@ -98,6 +98,7 @@ function keyPressed(arg) {
 		case 32: // Space key
 			played = false;
 			grid.restart(gridSizeSlider.value());
+			select('#modal').hide();
 			break;
 
 		default:
@@ -112,15 +113,16 @@ function keyPressed(arg) {
 		for (let i = 0; i < grid.length; i++) {
 			grid.grid[i] = grid.operate(grid.grid[i]);
 		}
+		
 		let moved = Grid.compare(past, grid.grid);
 
 		if (flipped) {
-			grid.grid = grid.flipGrid();
+			grid.flipGrid();
 		}
 		if (rotated) {
-			grid.grid = grid.rotateGrid();
-			grid.grid = grid.rotateGrid();
-			grid.grid = grid.rotateGrid();
+			grid.rotateGrid();
+			grid.rotateGrid();
+			grid.rotateGrid();
 		}
 
 		if (moved) {
