@@ -3,6 +3,7 @@
  *	twitter.com/mrolback
  */
 
+// Define some global variables
 let grid;
 let score = 0;
 let scoreLabel;
@@ -13,7 +14,7 @@ let winAtSlider;
 
 function setup() {
 
-	createCanvas(500, 500);
+	createCanvas(500, 500); // Create canvas
 
 	// Select elements
 	modal = select('#modal');
@@ -47,22 +48,23 @@ function setup() {
 
 function draw() {
 
-	background(255);
+	background(255); // White background
 	noFill();
-	stroke(0);
-	strokeWeight(2);
+	stroke(0); // Set stroke color to black
+	strokeWeight(2); // Set stroke wigth/thickness to 2
 
 	grid.winAt = pow(2, winAtSlider.value());
 	gridSizeP.html('Grid size: ' + gridSizeSlider.value() + 'x' + gridSizeSlider.value());
 	winAtP.html('<br/>Win at tile-size: ' + grid.winAt);
 	scoreLabel.html('Score: ' + grid.score);
 
-	grid.draw();
+	grid.draw(); // Draw the grid
 
 }
 
 function keyPressed(arg) {
 
+	// keyCode is predefined in p5, but overwrite if function recieves an argument
 	if (typeof arg == 'number') {
 		keyCode = arg;
 	}
@@ -72,6 +74,7 @@ function keyPressed(arg) {
 	let rotated = false;
 	let played = true;
 
+	// Do diffrent things for diffrent keys
 	switch (keyCode) {
 
 		case UP_ARROW:
@@ -85,7 +88,7 @@ function keyPressed(arg) {
 			break;
 
 		case DOWN_ARROW:
-			// Do nothing
+			// Do nothing, no need to flip or rotate the grid.
 			break;
 
 		case LEFT_ARROW:
@@ -113,29 +116,35 @@ function keyPressed(arg) {
 		for (let i = 0; i < grid.length; i++) {
 			grid.grid[i] = grid.operate(grid.grid[i]);
 		}
-		
+
 		let moved = Grid.compare(past, grid.grid);
 
+		// If the grid was flipped, flip it back
 		if (flipped) {
 			grid.flipGrid();
 		}
+
+		// If the grid was rotated, rotate it back to the original orientation
 		if (rotated) {
 			grid.rotateGrid();
 			grid.rotateGrid();
 			grid.rotateGrid();
 		}
 
+		// If something moved on the grid, add a new number to an empty tile
 		if (moved) {
 			grid.addNum();
 		}
 	}
 
+	// If there are no possible moves, end the game
 	if (grid.failed()) {
 		console.log('Game over!');
 		select('#modal').show();
 		select('#game-ended-text').html('Aww :(<br/>You scored ' + grid.score + ' points!');
 	}
 
+	// If the winAt value is reached in a tile, end the game
 	if (grid.success()) {
 		console.log('You made it to ' + grid.winAt + '!');
 		select('#modal').show();
@@ -144,7 +153,7 @@ function keyPressed(arg) {
 
 }
 
-// Handle touch gestures
+// Handle touch events for mobile/tablet devices
 let t = {
 	sX: 0,
 	sY: 0,
