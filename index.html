@@ -12,12 +12,13 @@
 		<script src="lib/p5.dom.min.js"></script>
 		<script src="lib/Grid.js"></script>
 		<script src="sketch.js"></script>
+		<script src="lib/Ai.js"></script>
 	</head>
 	<body>
 		<h1 id="score">Score: </h1>
 		<div id="modal">
 			<h1 id="game-ended-text"></h1>
-			<button onclick="select('#modal').hide();">Close</button><button onclick="grid.restart(gridSizeSlider.value()); select('#modal').hide();">New game</button>
+			<button onclick="select('#modal').hide();">Close</button><button onclick="newGameButton()">New game</button>
 		</div>
 		<datalist id="sizes">
 			<option value="3">

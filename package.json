@@ -4,7 +4,8 @@
   "description": "My version of the game 2048!",
   "main": "",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "./node_modules/.bin/live-server --port=5000 --no-browser"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   },
   "homepage": "https://github.com/olback/2048#readme",
   "devDependencies": {
-    "jest": "^22.1.4"
+    "jest": "^22.1.4",
+    "live-server": "^1.2.1"
   }
 }

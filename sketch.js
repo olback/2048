@@ -11,6 +11,9 @@ let gridSizeP;
 let gridSizeSlider;
 let winAtP;
 let winAtSlider;
+let ai;
+
+let ENABLE_AI = false;
 
 function setup() {
 
@@ -39,6 +42,7 @@ function setup() {
 
 	// Create the grid with slider value
 	grid = new Grid(gridSizeSlider.value()); // Default size: 4
+	ai = new Ai(grid, 10);
 
 	// Add two random numbers at the start of every game
 	grid.addNum();
@@ -58,7 +62,27 @@ function draw() {
 	winAtP.html('<br/>Win at tile-size: ' + grid.winAt);
 	scoreLabel.html('Score: ' + grid.score);
 
+	if (ENABLE_AI) {
+		ai.makeMove();
+	}
+
 	grid.draw(); // Draw the grid
+
+		// If there are no possible moves, end the game
+	if (grid.failed()) {
+		noLoop();
+		console.log('Game over!');
+		select('#modal').show();
+		select('#game-ended-text').html('Aww :(<br/>You scored ' + grid.score + ' points!');
+	}
+
+	// If the winAt value is reached in a tile, end the game
+	if (grid.success()) {
+		noLoop();
+		console.log('You made it to ' + grid.winAt + '!');
+		select('#modal').show();
+		select('#game-ended-text').html('Congratulations!<br/> You scored ' + grid.score + ' points and made it to ' + grid.winAt + '!');
+	}
 
 }
 
@@ -69,86 +93,34 @@ function keyPressed(arg) {
 		keyCode = arg;
 	}
 
-	// TODO: Shold be stored in the grid object as they are specific to that grid.
-	let flipped = false;
-	let rotated = false;
-	let played = true;
-
 	// Do diffrent things for diffrent keys
 	switch (keyCode) {
 
 		case UP_ARROW:
-			grid.flipGrid();
-			flipped = true;
+			grid.makeMove('up');
 			break;
 
 		case RIGHT_ARROW:
-			grid.rotateGrid();
-			rotated = true;
+			grid.makeMove('right');
 			break;
 
 		case DOWN_ARROW:
-			// Do nothing, no need to flip or rotate the grid.
+			grid.makeMove('down');
 			break;
 
 		case LEFT_ARROW:
-			grid.rotateGrid();
-			grid.flipGrid();
-			rotated = true;
-			flipped = true;
+			grid.makeMove('left');
 			break;
 
 		case 32: // Space key
-			played = false;
+			loop();
 			grid.restart(gridSizeSlider.value());
 			select('#modal').hide();
 			break;
 
 		default:
-			played = false;
 			break;
 
-	}
-
-	if (played) {
-
-		let past = Grid.copyGrid(grid.grid);
-		for (let i = 0; i < grid.length; i++) {
-			grid.grid[i] = grid.operate(grid.grid[i]);
-		}
-
-		let moved = Grid.compare(past, grid.grid);
-
-		// If the grid was flipped, flip it back
-		if (flipped) {
-			grid.flipGrid();
-		}
-
-		// If the grid was rotated, rotate it back to the original orientation
-		if (rotated) {
-			grid.rotateGrid();
-			grid.rotateGrid();
-			grid.rotateGrid();
-		}
-
-		// If something moved on the grid, add a new number to an empty tile
-		if (moved) {
-			grid.addNum();
-		}
-	}
-
-	// If there are no possible moves, end the game
-	if (grid.failed()) {
-		console.log('Game over!');
-		select('#modal').show();
-		select('#game-ended-text').html('Aww :(<br/>You scored ' + grid.score + ' points!');
-	}
-
-	// If the winAt value is reached in a tile, end the game
-	if (grid.success()) {
-		console.log('You made it to ' + grid.winAt + '!');
-		select('#modal').show();
-		select('#game-ended-text').html('Congratulations!<br/> You scored ' + grid.score + ' points and made it to ' + grid.winAt + '!');
 	}
 
 }
@@ -189,4 +161,10 @@ function initTouch() {
 		}
 	}
 
+}
+
+function newGameButton() {
+	loop();
+	grid.restart(gridSizeSlider.value());
+	select('#modal').hide();
 }
