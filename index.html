@@ -1,49 +1,57 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>2048</title>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link rel="stylesheet" href="main.css" />
-		<script src="lib/p5.min.js"></script>
-		<script src="lib/p5.dom.min.js"></script>
-		<script src="lib/Grid.js"></script>
-		<script src="sketch.js"></script>
-	</head>
-	<body>
-		<h1 id="score">Score: </h1>
-		<div id="modal">
-			<h1 id="game-ended-text"></h1>
-			<button onclick="select('#modal').hide();">Close</button><button onclick="grid.restart(gridSizeSlider.value()); select('#modal').hide();">New game</button>
-		</div>
-		<datalist id="sizes">
-			<option value="3">
-			<option value="4" label="4">
-			<option value="5">
-			<option value="6">
-			<option value="7">
-			<option value="8" label="8">
-			<option value="9">
-			<option value="10">
-			<option value="11">
-			<option value="12" label="12">
-		</datalist>
-		<datalist id="scores">
-			<option value="4" label="16">
-			<option value="5">
-			<option value="6">
-			<option value="7">
-			<option value="8">
-			<option value="9" label="8">
-			<option value="10">
-			<option value="11" label="2048">
-			<option value="12">
-			<option value="13">
-			<option value="14">
-			<option value="15" label="32768">
-		</datalist>
-	</body>
+	<title>2048</title>
+
+	<link rel="stylesheet" href="main.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"
+		integrity="sha512-RvZgNFwDeJ4oPjuhkIrBki+I1LjEW6TXbQ+qHFKEPOR126hk1dkg+cvOCW6vUTHQEcryzTmEzTkvHKcGpEFNUw=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"
+		integrity="sha512-lfl7IG9TmPKTuZ2ZIx2xfPRn2qWnfIleGc1LR7gm9jZOUVjki7lWJZJb1aB6AmxW3IL+2H98CgnXM3KtUV9BWw=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="lib/Grid.js"></script>
+	<script src="sketch.js"></script>
+</head>
+
+<body>
+	<h1 id="score">Score: </h1>
+	<div id="modal">
+		<h1 id="game-ended-text"></h1>
+		<button onclick="select('#modal').hide();">Close</button><button
+			onclick="grid.restart(gridSizeSlider.value()); select('#modal').hide();">New game</button>
+	</div>
+	<datalist id="sizes">
+		<option value="3">
+		<option value="4" label="4">
+		<option value="5">
+		<option value="6">
+		<option value="7">
+		<option value="8" label="8">
+		<option value="9">
+		<option value="10">
+		<option value="11">
+		<option value="12" label="12">
+	</datalist>
+	<datalist id="scores">
+		<option value="4" label="16">
+		<option value="5">
+		<option value="6">
+		<option value="7">
+		<option value="8">
+		<option value="9" label="8">
+		<option value="10">
+		<option value="11" label="2048">
+		<option value="12">
+		<option value="13">
+		<option value="14">
+		<option value="15" label="32768">
+	</datalist>
+</body>
+
 </html>
